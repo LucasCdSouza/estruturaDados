@@ -7,12 +7,12 @@ class Metodo:
     def ler_csv(dados_clima):
 
         # lista que usei para armazenar os objetos Clima criados a partir do CSV
-        climas = []
+        lista_climas = []
 
         with open(dados_clima, newline="", encoding="utf-8") as arquivo:
             leitor = csv.reader(arquivo)
 
-            for linha in leitor:
+            for linha in leitor: #lê cada linha do CSV, cria um objeto Clima e o adiciona à lista
                 if linha:
                     nivel_chuva = 0
 
@@ -32,15 +32,15 @@ class Metodo:
                         nivel_chuva
                     )
 
-                    climas.append(clima)
+                    lista_climas.append(clima) #adiciona o objeto Clima criado à lista
 
-        return climas
+        return lista_climas
 
     @staticmethod
     def estacao_ano(mes):
         # determina a estação do ano com base no mês informado.
 
-        mes = mes.strip().lower()
+        mes = mes.strip().lower() 
 
         if mes in ["dezembro", "janeiro", "fevereiro"]:
             return "Verão"
@@ -54,67 +54,67 @@ class Metodo:
             return "Desconhecido"
 
     @staticmethod
-    def analisar_dados(climas):
+    def dados_estacao(climas):
 
-        # listas que usei para armazenar os objetos Clima de cada estação do ano
-        Verao = []
-        Inverno = []
-        Outono = []
-        Primavera = []
+        # listas que usei para armazenar os objetos da classe Clima de cada estação do ano
+        lista_Verao = []
+        lista_Inverno = []
+        lista_Outono = []
+        lista_Primavera = []
 
         for c in climas:
-            estacao = Metodo.estacao_ano(c.mes)
+            estacao = Metodo.estacao_ano(c.mes) #chama o método que determina a estação do ano com base no mês do objeto
 
             if estacao == "Verão":
-                Verao.append(c)
+                lista_Verao.append(c) 
             elif estacao == "Inverno":
-                Inverno.append(c)
+                lista_Inverno.append(c)
             elif estacao == "Outono":
-                Outono.append(c)
+                lista_Outono.append(c)
             elif estacao == "Primavera":
-                Primavera.append(c)
+                lista_Primavera.append(c)
 
 
-        # variáveis para armazenar a soma dos níveis de chuva de cada estação
-        soma_Verao = sum(c.nivel_chuva for c in Verao)
-        soma_Inverno = sum(c.nivel_chuva for c in Inverno)
-        soma_Outono = sum(c.nivel_chuva for c in Outono)
-        soma_Primavera = sum(c.nivel_chuva for c in Primavera)
+        # o sum conta a soma dos níveis de chuva de todos os objetos de cada estação
+        soma_Verao = sum(c.nivel_chuva for c in lista_Verao) 
+        soma_Inverno = sum(c.nivel_chuva for c in lista_Inverno)
+        soma_Outono = sum(c.nivel_chuva for c in lista_Outono)
+        soma_Primavera = sum(c.nivel_chuva for c in lista_Primavera)
 
-        # contagem de registros por temperatura em cada estação
+        #contagem de quantos objetos "Quentes existem em cada estação"
         quente = {
-            "Verão": sum(1 for c in Verao if c.temperatura == "Quente"),
-            "Outono": sum(1 for c in Outono if c.temperatura == "Quente"),
-            "Inverno": sum(1 for c in Inverno if c.temperatura == "Quente"),
-            "Primavera": sum(1 for c in Primavera if c.temperatura == "Quente"),
+            "Verão": sum(1 for c in lista_Verao if c.temperatura == "Quente"),
+            "Outono": sum(1 for c in lista_Outono if c.temperatura == "Quente"),
+            "Inverno": sum(1 for c in lista_Inverno if c.temperatura == "Quente"),
+            "Primavera": sum(1 for c in lista_Primavera if c.temperatura == "Quente"),
         }
-
+        #contagem de quantos objetos "Amenos existem em cada estação"
         ameno = {
-            "Verão": sum(1 for c in Verao if c.temperatura == "Ameno"),
-            "Outono": sum(1 for c in Outono if c.temperatura == "Ameno"),
-            "Inverno": sum(1 for c in Inverno if c.temperatura == "Ameno"),
-            "Primavera": sum(1 for c in Primavera if c.temperatura == "Ameno"),
+            "Verão": sum(1 for c in lista_Verao if c.temperatura == "Ameno"), 
+            "Outono": sum(1 for c in lista_Outono if c.temperatura == "Ameno"),
+            "Inverno": sum(1 for c in lista_Inverno if c.temperatura == "Ameno"),
+            "Primavera": sum(1 for c in lista_Primavera if c.temperatura == "Ameno"),
         }
-
+        #contagem de quantos objetos "Frios existem em cada estação"
         frio = {
-            "Verão": sum(1 for c in Verao if c.temperatura == "Frio"),
-            "Outono": sum(1 for c in Outono if c.temperatura == "Frio"),
-            "Inverno": sum(1 for c in Inverno if c.temperatura == "Frio"),
-            "Primavera": sum(1 for c in Primavera if c.temperatura == "Frio"),
+            "Verão": sum(1 for c in lista_Verao if c.temperatura == "Frio"),
+            "Outono": sum(1 for c in lista_Outono if c.temperatura == "Frio"),
+            "Inverno": sum(1 for c in lista_Inverno if c.temperatura == "Frio"),
+            "Primavera": sum(1 for c in lista_Primavera if c.temperatura == "Frio"),
         }
-
+        #chuvas armazena a soma dos níveis de chuva de cada estação para facilitar a análise
         chuvas = {
-            "Verão": soma_Verao,
+            "Verão": soma_Verao, 
             "Outono": soma_Outono,
             "Inverno": soma_Inverno,
             "Primavera": soma_Primavera
         }
-
+        #saída dos dados processados
         print("\nQuantidade de registros por estação:")
-        print("Verão:", len(Verao))
-        print("Outono:", len(Outono))
-        print("Inverno:", len(Inverno))
-        print("Primavera:", len(Primavera))
+        print("Verão:", len(lista_Verao))
+        print("Outono:", len(lista_Outono))
+        print("Inverno:", len(lista_Inverno))
+        print("Primavera:", len(lista_Primavera))
 
         print("\nResumo climático:")
         print("Estação que mais chove:", max(chuvas, key=chuvas.get))
@@ -123,34 +123,31 @@ class Metodo:
         print("Estação mais amena:", max(ameno, key=ameno.get))
         print("Estação mais fria:", max(frio, key=frio.get))
 
-        # optei por usar um dicionário para armazenar os dados por ano 
-        # cada chave do dicionário é um ano
-        # o valor é outro dicionário que armazena a soma dos níveis de chuva e a contagem de registros por temperatura para aquele ano.
-        dados_anos = {}
+        analise_anos = {}
 
         for c in climas:
             ano = c.ano
 
-            if ano not in dados_anos:
-                dados_anos[ano] = {
+            if ano not in analise_anos:
+                analise_anos[ano] = {
                     "chuva": 0,
                     "quente": 0,
                     "frio": 0
                 }
 
-            dados_anos[ano]["chuva"] += c.nivel_chuva
+            analise_anos[ano]["chuva"] += c.nivel_chuva
 
             if c.temperatura == "Quente":
-                dados_anos[ano]["quente"] += 1
+                analise_anos[ano]["quente"] += 1
 
             if c.temperatura == "Frio":
-                dados_anos[ano]["frio"] += 1
+                analise_anos[ano]["frio"] += 1
 
         # para determinar o ano mais quente, mais frio e mais chuvoso, 
-        # usei a função max() com uma função lambda para comparar os valores.
-        ano_mais_quente = max(dados_anos, key=lambda x: dados_anos[x]["quente"]) 
-        ano_mais_frio = max(dados_anos, key=lambda x: dados_anos[x]["frio"])
-        ano_mais_chuvoso = max(dados_anos, key=lambda x: dados_anos[x]["chuva"])
+        # lambda  é usada para a comparação dos valores de temperatura e chuva em cada ano para retornar o maximo de cada categoria
+        ano_mais_quente = max(analise_anos, key=lambda x: analise_anos[x]["quente"]) 
+        ano_mais_frio = max(analise_anos, key=lambda x: analise_anos[x]["frio"])
+        ano_mais_chuvoso = max(analise_anos, key=lambda x: analise_anos[x]["chuva"])
 
         print("\nAnálise por ano:")
         print("Ano mais quente:", ano_mais_quente)

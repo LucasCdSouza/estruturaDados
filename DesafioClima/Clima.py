@@ -2,7 +2,7 @@ class Clima:
     def __init__(self, ano, mes, temperatura, nivel_chuva):
         self.ano = ano
         self.mes = mes
-        self.temperatura = temperatura
+        self.temperatura = temperatura #apenas ameno, frio e quente
         self.nivel_chuva = nivel_chuva
 
     def __str__(self):
