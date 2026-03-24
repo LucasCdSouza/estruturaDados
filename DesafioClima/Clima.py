@@ -5,7 +5,7 @@ class Clima:
         self.temperatura = temperatura #apenas ameno, frio e quente
         self.nivel_chuva = nivel_chuva
 
-    def __str__(self):
+    def __str__(self): 
         return (
         f"Ano: {self.ano}\n"
         f"Mês: {self.mes}\n"

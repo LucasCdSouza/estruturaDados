@@ -3,7 +3,7 @@ from Clima import Clima
 
 class Metodo:
 
-    @staticmethod
+    @staticmethod 
     def ler_csv(dados_clima):
 
         # lista que usei para armazenar os objetos Clima criados a partir do CSV
