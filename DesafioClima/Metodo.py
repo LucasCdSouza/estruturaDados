@@ -81,7 +81,7 @@ class Metodo:
         soma_Outono = sum(c.nivel_chuva for c in lista_Outono)
         soma_Primavera = sum(c.nivel_chuva for c in lista_Primavera)
 
-        #contagem de quantos objetos "Quentes existem em cada estação"
+        #contagem de quantos objetos "Quentes existem em cada estação."
         quente = {
             "Verão": sum(1 for c in lista_Verao if c.temperatura == "Quente"),
             "Outono": sum(1 for c in lista_Outono if c.temperatura == "Quente"),
