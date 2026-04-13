@@ -77,5 +77,8 @@ public class Metodo {
             System.out.println("Total de fichas faltantes PRIORITARIA... " + filaPrioritaria.size() + " - " + filaPrioritaria);
         }
     }
-
+    /** método de classe que mostra o menu de opções para o usuário
+     * @param filaNormal  
+     * @param filaPrioritaria
+     */
 }
